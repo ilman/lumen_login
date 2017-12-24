@@ -12,5 +12,13 @@
 */
 
 $app->get('/', function () use ($app) {
-    return $app->version();
+	return $app->version();
 });
+
+$app->get('', function () use ($app) {
+	return $app->version();
+});
+
+$app->post('login', 'UserController@postLogin');
+$app->post('register', 'UserController@postRegister');
+$app->get('user/{id}', ['middleware' => 'auth', 'uses' =>  'UserController@getUser']);
